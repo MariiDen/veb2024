@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La maison de Veronique</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <header>
+        <!-- Логотип та вкладки -->
+        <div class="logo">La maison de Veronique</div>
+        <nav>
+            <a href="index.html" class="tab">Головна сторінка</a>
+            <a href="catalog.html" class="tab">Каталог</a>
+            <a href="cart.html" class="tab">Кошик</a>
+        </nav>
+    </header>
+    <div class="content">
+        <!-- Стрічка пошуку -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Пошук свічок">
+            <button onclick="searchProducts()">Пошук</button>
+        </div>
+        <!-- Квадратики продуктів -->
+        <div id="productContainer">
+            <!-- Заповнюється за допомогою JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        
+        const products = [
+            { id: 'product1', name: 'Масажна свічка з ароматом богемської троянди', image: 'image/img2.jpg' },
+            { id: 'product2', name: 'Масажна свічка з ароматом ожини', image: 'image/img3.jpg' },
+            { id: 'product3', name: 'Соєва свічка з ароматом лимонного пирога', image: 'image/img4.jpg' },
+            { id: 'product4', name: 'Соєва свічка з ароматом бібліотеки', image: 'image/img5.jpg' },
+            { id: 'product5', name: 'Соєва свічка з ароматом яблуко-бурбон', image: 'image/img6.jpg' },
+            { id: 'product6', name: 'Соєва свічка з ароматом просеко', image: 'image/img7.jpg' },
+            { id: 'product7', name: 'Соєва свічка з ароматом кави', image: 'image/img8.jpg' },
+            { id: 'product8', name: 'Соєва свічка з ароматом ваніль', image: 'image/img9.jpg' },
+            { id: 'product9', name: 'Соєва свічка з ароматом різдв\'яного вогнища', image: 'image/img10.jpg' }
+        ];
+
+        function renderProducts(products) {
+            const productContainer = document.getElementById('productContainer');
+            productContainer.innerHTML = '';
+
+            products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('product');
+
+                const img = document.createElement('img');
+                img.src = product.image;
+                img.alt = product.name;
+                productDiv.appendChild(img);
+
+                const h3 = document.createElement('h3');
+                h3.textContent = product.name;
+                productDiv.appendChild(h3);
+
+                const button = document.createElement('button');
+                button.textContent = 'Додати до кошика';
+                button.onclick = () => addToCart(product.id);
+                productDiv.appendChild(button);
+
+                productContainer.appendChild(productDiv);
+            });
+        }
+
+        function addToCart(productId) {
+            let cartItems = localStorage.getItem('cartItems');
+            cartItems = cartItems ? JSON.parse(cartItems) : [];
+            cartItems.push(productId);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            alert('Товар додано до кошика!');
+        }
+
+        function searchProducts() {
+            const searchInput = document.getElementById('searchInput');
+            const searchText = searchInput.value.toLowerCase();
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchText));
+            renderProducts(filteredProducts);
+        }
+
+        renderProducts(products);
+    </script>
+</body>
+</html>

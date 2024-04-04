@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La maison de Veronique</title>
+    
+</head>
+<body>
+    <header>
+        <div class="logo">La maison de Veronique</div>
+        <nav>
+            <a href="index.html" class="tab">Головна сторінка</a>
+            <a href="catalog.html" class="tab">Каталог</a>
+            <a href="cart.html" class="tab">Кошик</a>
+        </nav>
+    </header>
+    <div class="content">
+        <h1>Кошик</h1>
+        <ul id="cartItemList">
+            <!-- Cart items will be populated dynamically here -->
+        </ul>
+        <button onclick="openCheckoutForm()">Оформити замовлення</button>
+        <form id="checkoutForm" onsubmit="submitOrder(event)" action="mailto:denkovichmari16@gmail.com" method="post" enctype="text/plain">
+            <label for="name">Ім'я:</label>
+            <input type="text" id="name" placeholder="Введіть ім'я" required><br>
+            <label for="surname">Прізвище:</label>
+            <input type="text" id="surname" placeholder="Введіть прізвище" required><br>
+            <label for="patronymic">По-батькові:</label>
+            <input type="text" id="patronymic" placeholder="Введіть по-батькові" required><br>
+            <label for="email">Електронна пошта:</label>
+            <input type="email" id="email" placeholder="Введіть електронну пошту" required><br>
+            <label for="phone">Номер телефону:</label>
+            <input type="tel" id="phone" placeholder="Введіть номер телефону" required><br>
+            <label for="city">Місто:</label>
+            <input type="text" id="city" placeholder="Введіть місто" required><br>
+            <label for="novaPoshta">Відділення Нової Пошти:</label>
+            <input type="text" id="novaPoshta" placeholder="Введіть відділення Нової Пошти" required><br>
+            <button type="submit">Купити</button>
+        </form>
+    </div>
+
+    <script>
+        window.onload = function() {
+            displayCartItems();
+        };
+
+        function displayCartItems() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+            const cartItemList = document.getElementById('cartItemList');
+            cartItemList.innerHTML = '';
+
+            if (cartItems && cartItems.length > 0) {
+                cartItems.forEach(itemId => {
+                    const li = document.createElement('li');
+                    li.textContent = itemId;
+                    cartItemList.appendChild(li);
+                });
+            } else {
+                const li = document.createElement('li');
+                li.textContent = 'Кошик порожній';
+                cartItemList.appendChild(li);
+            }
+        }
+
+        function openCheckoutForm() {
+            document.getElementById('checkoutForm').style.display = 'block';
+        }
+
+        function submitOrder(event) {
+            event.preventDefault(); // Зупиняємо стандартну подію надсилання форми
+
+            // Отримуємо значення полів форми
+            const name = document.getElementById('name').value;
+            const surname = document.getElementById('surname').value;
+            const patronymic = document.getElementById('patronymic').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const city = document.getElementById('city').value;
+            const novaPoshta = document.getElementById('novaPoshta').value;
+
+            // Формуємо текст листа
+            const emailBody = `Ім'я: ${name}\nПрізвище: ${surname}\nПо-батькові: ${patronymic}\nЕлектронна пошта: ${email}\nНомер телефону: ${phone}\nМісто: ${city}\nВідділення Нової Пошти: ${novaPoshta}`;
+
+            // Відкриття зовнішньої поштової програми з вже заповненим листом
+            window.location.href = `mailto:denkovichmari16@gmail.com?subject=Замовлення&body=${encodeURIComponent(emailBody)}`;
+
+            
+            alert('Лист замовлення надіслано!');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+body {
+    background-image: url('img1.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-family: Gabriola, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #2e582e;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+header a {
+    color: rgba(255, 255, 255, 0.677);
+    text-decoration: none;
+    font-size: 30px;
+    margin: 0 20px;
+}
+.logo {
+    color: gold;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 30px;
+    margin-left: 20px;
+}
+.content {
+    padding: 20px;
+}
+#cartItemList {
+    list-style-type: none;
+    padding: 0;
+}
+#checkoutForm {
+    display: none; /* Починаємо зі схованої форми */
+}

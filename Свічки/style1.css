@@ -1,0 +1,84 @@
+body {
+    background-image: url('img1.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-family: Gabriola, Arial, sans-serif; /* Додаємо шрифт Gabriola */
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #2e582e;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px; /* встановлюємо висоту шапки */
+}
+header a {
+    color: rgba(255, 255, 255, 0.677);
+    text-decoration: none;
+    font-size: 30px;
+    margin: 0 20px;
+}
+.logo {
+    color: gold;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 30px;
+    margin-left: 20px;
+}
+.content {
+    padding: 20px;
+    text-align: center; /* Вирівнюємо вміст по центру */
+}
+.search-bar {
+    margin-top: 20px; /* Додаємо відступ зверху */
+}
+.product {
+    display: inline-block;
+    width: calc(33% - 20px); /* Ширина квадратика (33.33% мінус відступи між ними) */
+    margin: 10px; /* Відступи між квадратиками */
+    background-color: #2e582e;
+    border-radius: 10px; /* Закруглені кути */
+    padding: 20px; /* Відступ всередині квадратика */
+    box-sizing: border-box; /* Враховувати padding у визначенні ширини */
+    text-align: center;
+}
+.product img {
+    width: 300px; /* Розмір фото */
+    height: 300px;
+    border-radius: 10%; /* Округлення країв фото */
+    margin-bottom: 10px; /* Відступ між фото та назвою продукту */
+}
+.product h3 {
+    margin: 0;
+    color: gold; /* Колір тексту назви продукту */
+    font-size: 20px; /* Розмір тексту назви продукту */
+}
+.product button {
+    background-color: gold; /* Колір кнопки "Додати до кошика" */
+    color: #2e582e; /* Колір тексту кнопки */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px; /* Відступ зверху для кнопки */
+}
+@media (max-width: 600px) {
+    header {
+        flex-direction: column; /* Вертикальне розташування елементів у шапці */
+        height: auto; /* Автоматична висота шапки */
+        padding-bottom: 20px; /* Додатковий відступ у нижній частині шапки */
+    }
+    header a {
+        margin: 10px 0; /* Відступи по вертикалі між пунктами меню */
+    }
+    .content {
+        text-align: left; /* Вирівнюємо вміст по лівому краю */
+    }
+    .product {
+        width: 100%; /* Змінюємо ширину продуктів на 100% на малих екранах */
+    }
+}

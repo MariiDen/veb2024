@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La maison de Veronique</title>
+    <link rel="stylesheet" href="style2.css">
+
+    <style>
+        body {
+            background-image: url('img1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            font-family: Gabriola, Arial, sans-serif; /* Додаємо шрифт Gabriola */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2e582e;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px; /* встановлюємо висоту шапки */
+        }
+        header a {
+            color: rgba(255, 255, 255, 0.677);
+            text-decoration: none;
+            font-size: 30px;
+            margin: 0 20px;
+        }
+        .logo {
+            color: gold;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 30px;
+            margin-left: 20px;
+        }
+        .content {
+            padding: 20px;
+        }
+        /* Стилі для вікна, що висувається */
+        .popup {
+            display: block;
+            position: absolute;
+            top: calc(70px + 40px); /* вирівнюємо з нижньою лінією шапки */
+            left: 0px; /* переносимо в лівий край */
+            z-index: 9999;
+            text-align: center;
+            width: 900px; /* збільшуємо ширину фото */
+        }
+        .popup img {
+            max-width: 100%;
+            height: auto;
+        }
+        .popup::after {
+            content: "Ти - муза. La maison - мистецтво. Спробуй свічки від La maison de Veronique та відчуй прихід натхнення.";
+            display: block;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 50px;
+            font-weight: bold;
+            font-family: Gabriola, Arial, sans-serif; /* Додаємо шрифт Gabriola */
+            color: black; /* зміна кольору тексту на чорний */
+            position: absolute;
+            top: 50%;
+            left: calc(100% + 10px); /* розміщуємо праворуч від зображення */
+            transform: translateY(-50%);
+            width: 500px;
+            max-width: 80%;
+            height: auto;
+            text-align: center;
+        }
+        table {
+            width: 80%; /* Змінюємо ширину таблиці на 80% від розміру контейнера */
+            margin: 0 auto; /* Центруємо таблицю на сторінці */
+            background-color: rgba(0, 0, 0, 0.5); /* Задаємо фон таблиці */
+            border-radius: 5px; /* Закруглюємо кути таблиці */
+            position: absolute; /* Розміщуємо таблицю абсолютно відносно її батьківського контейнера */
+            top: calc(900px + 40px);
+            left: 50%; /* Розміщуємо таблицю по центру горизонталі */
+            transform: translateX(-50%); /* Коригуємо позицію по горизонталі на половину ширини таблиці */
+            z-index: 1; /* Задаємо високий індекс для таблиці, щоб вона була поверх інших елементів */
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #2e582e;
+            color: gold; /* Змінюємо колір тексту заголовку на золотий */
+        }
+        .useful-content {
+            width: 80%; 
+            margin: 0 auto; 
+            background-color: #2e582e; 
+            border-radius: 5px; 
+            position: absolute;
+            top: calc(900px + 440px);
+            display: flex; /* Розміщуємо блоки в одному рядку */
+            justify-content: space-between; /* Рівномірний розподіл між блоками */
+            padding: 20px; /* Додамо відступи всередині блоку */
+        }
+        .useful-articles,
+        .video {
+            width: 48%; /* Ширина блоків (з відступами) */
+        }
+        .useful-articles h3,
+        .video h3 {
+            color: gold; /* Змінюємо колір заголовків блоків на золотий */
+            font-size: 35px; /* Збільшуємо розмір шрифту посилань */
+        }
+        .useful-articles a,
+        .video a {
+            color: lightgray; /* Змінюємо колір посилань на світло-сірий */
+            font-size: 30px; /* Збільшуємо розмір шрифту посилань */
+        }
+        .useful-articles p,
+        .video p {
+            color: rgb(237, 226, 137); /* Змінюємо колір посилань на світло-сірий */
+            font-size: 30px; /* Збільшуємо розмір шрифту посилань */
+        }
+        footer {
+            background-color: #2e582e;
+            padding: 20px 0;
+            text-align: center;
+            position: absolute; /* Розміщуємо таблицю абсолютно відносно її батьківського контейнера */
+            top: calc(900px + 940px);
+            color: rgba(255, 255, 255, 0.677);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px; /* встановлюємо висоту шапки */
+        }
+        footer a {
+            color: rgba(255, 255, 255, 0.677);
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Логотип -->
+        <div class="logo">La maison de Veronique</div>
+        <!-- Вкладки -->
+        <nav>
+            <a href="#" class="tab">Головна сторінка</a>
+            <a href="catalog.html" class="tab">Каталог</a>
+            <a href="cart.html" class="tab">Кошик</a>
+        </nav>
+    </header>
+    <div class="content">
+        <h1>La maison de Veronique</h1>
+        <!-- Зміст сторінки -->
+        <div class="popup" id="popup">
+            <img src="image/img1.jpg" alt="Мої свічки - мистецтво">
+        </div>
+        <h2>ТОП-ароматів наших клієнтів</h2>
+        <table>
+            <tr>
+                <th>№</th>
+                <th>Назва аромату</th>
+                <th>Кількість проданих свічок</th>
+                <th>Ціна свічок, грн</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Лимонний пиріг</td>
+                <td>150</td>
+                <td>280</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ожина</td>
+                <td>120</td>
+                <td>280</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Просеко</td>
+                <td>100</td>
+                <td>250</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Яблуко-бурбон</td>
+                <td>90</td>
+                <td>310</td>
+            </tr>
+        </table>
+        <!-- Корисні статті і Відео -->
+        <div class="useful-content">
+            <!-- Корисні статті -->
+            <div class="useful-articles">
+                <h3>Корисні статті</h3>
+                <p>Ось декілька корисних статей:</p>
+                <ul>
+                    <li><a href="https://telegraf.com.ua/ukr/lifestyle/2023-02-25/5780775-yaki-svichki-krashche-kupuvati-plyusi-minusi-ta-pidvodni-kameni-riznikh-vidiv">Як правильно вибрати аромат свічки</a></li>
+                    <li><a href="https://aromaburo.ua/6-sposobiv-stvorennia-aromatnoho-zatyshku-u-domi/">Секрети створення затишку в домі за допомогою свічок</a></li>
+                </ul>
+            </div>
+            <!-- Відео -->
+            <div class="video">
+                <h3>Відео</h3>
+                <p>Дивіться наші відео на YouTube:</p>
+                <ul>
+                    <li><a href="https://youtu.be/qQZKZS2FOhU">Як виготовляються свічки</a></li>
+                    <li><a href="https://youtu.be/e3z5f6eeK7Q">Техніки виготовлення свічок</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <a href="https://www.instagram.com/lammaison_decor?igshid=hylb42ecbr4n">Instagram</a>
+        <a href="https://www.tiktok.com/@lammaison_decor?_t=8kLve4MLlZO&_r=1">TikTok</a>
+        <p>© 2024 La maison de Veronique. Усі права захищені.</p>
+    </footer>
+</body>
+</html>
