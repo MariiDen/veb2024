@@ -1,0 +1,14 @@
+/* Styles for the quiz */
+.question {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.answers label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#result {
+    margin-top: 20px;
+}

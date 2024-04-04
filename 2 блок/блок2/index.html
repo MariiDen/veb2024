@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опитування</title>
+    <style>
+        /* CSS стилі */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Опитування</h1>
+    <form id="surveyForm">
+        <label for="favoriteScent">Який аромат ваш улюблений?</label><br>
+        <input type="checkbox" id="favoriteScent1" name="favoriteScent" value="lemonPie">
+        <label for="favoriteScent1">Лимонний пиріг</label><br>
+        <input type="checkbox" id="favoriteScent2" name="favoriteScent" value="raspberry">
+        <label for="favoriteScent2">Ожина</label><br>
+        <input type="checkbox" id="favoriteScent3" name="favoriteScent" value="frankincense">
+        <label for="favoriteScent3">Ладан</label><br>
+        <input type="checkbox" id="favoriteScent4" name="favoriteScent" value="gingerbread">
+        <label for="favoriteScent4">Будиночок Гензель і Грети</label><br>
+        <input type="checkbox" id="favoriteScent5" name="favoriteScent" value="mulledWine">
+        <label for="favoriteScent5">Глінтвейн</label><br>
+        <input type="checkbox" id="favoriteScent6" name="favoriteScent" value="coffee">
+        <label for="favoriteScent6">Кава</label><br>
+        <input type="checkbox" id="favoriteScent7" name="favoriteScent" value="cashmerePlum">
+        <label for="favoriteScent7">Кашимірська слива</label><br>
+        <input type="checkbox" id="favoriteScent8" name="favoriteScent" value="appleBourbon">
+        <label for="favoriteScent8">Яблуко бурбон</label><br>
+        <input type="checkbox" id="favoriteScent9" name="favoriteScent" value="prosecco">
+        <label for="favoriteScent9">Проссеко</label><br>
+        <input type="checkbox" id="favoriteScent10" name="favoriteScent" value="christmasFireplace">
+        <label for="favoriteScent10">Різдв'яне вогнище</label><br>
+        <input type="checkbox" id="favoriteScent11" name="favoriteScent" value="pineForest">
+        <label for="favoriteScent11">Сосновий ліс</label><br><br>
+
+        <label>Для чого ви використовуєте свічки?</label><br>
+        <input type="radio" id="purpose1" name="purpose" value="aroma">
+        <label for="purpose1">Для створення атмосфери</label><br>
+        <input type="radio" id="purpose2" name="purpose" value="decor">
+        <label for="purpose2">Для декору</label><br>
+        <input type="radio" id="purpose3" name="purpose" value="gift">
+        <label for="purpose3">Я використовую їх як подарунок</label><br><br>
+
+        <label for="lightingFrequency">Як часто ви запалюєте свічку?</label><br>
+        <input type="number" id="lightingFrequency" name="lightingFrequency" min="0"><br><br>
+
+        <label for="goodGift">Чи вважаєте ви гарним подарунком свічку?</label><br>
+        <select id="goodGift" name="goodGift">
+            <option value="yes">Так</option>
+            <option value="no">Ні</option>
+        </select><br><br>
+
+        <label for="recipient">Кому краще підійде такий подарунок?</label><br>
+        <select id="recipient" name="recipient">
+            <option value="family">Родині</option>
+            <option value="friend">Друзям</option>
+            <option value="colleague">Колегам</option>
+        </select><br><br>
+
+        <label>На які свята свічка буде гарним подарунком?</label><br>
+        <input type="checkbox" id="holidays1" name="holidays" value="birthday">
+        <label for="holidays1">День народження</label><br>
+        <input type="checkbox" id="holidays2" name="holidays" value="christmas">
+        <label for="holidays2">Різдво</label><br>
+        <input type="checkbox" id="holidays3" name="holidays" value="valentines">
+        <label for="holidays3">День святого Валентина</label><br><br>
+
+        <label for="priceRange">За яку ціну ви готові купити свічку?</label><br>
+        <input type="number" id="priceRange" name="priceRange" min="0"><br><br>
+
+        <button type="submit">Відправити</button>
+    </form>
+
+    <!-- Кнопки для виклику запитів -->
+    <button id="query1">Знайти учасників з ароматом "Лимонний пиріг"</button>
+    <button id="query2">Знайти учасників, які вважають свічку гарним подарунком</button>
+    <button id="query3">Знайти учасників з ціною свічки від 250 до 350 грн</button>
+    <!-- Результати запитів будуть виводитися тут -->
+    <div id="queryResults"></div>
+
+ <script>
+     // Функція для пошуку учасників з ароматом "Лимонний пиріг"
+     function findParticipantsWithSameFavoriteScents(scent) {
+         const surveyResults = JSON.parse(localStorage.getItem('surveyResults'));
+         return surveyResults.filter(participant => participant.favoriteScent === scent);
+     }
+
+     // Функція для пошуку учасників, які вважають свічку гарним подарунком
+     function findParticipantsWhoConsiderCandleAGoodGift() {
+         const surveyResults = JSON.parse(localStorage.getItem('surveyResults'));
+         return surveyResults.filter(participant => participant.goodGift === 'yes');
+     }
+
+     // Функція для пошуку учасників з ціною свічки від minPrice до maxPrice
+     function findParticipantsWithinPriceRange(minPrice, maxPrice) {
+         const surveyResults = JSON.parse(localStorage.getItem('surveyResults'));
+         return surveyResults.filter(participant => participant.priceRange >= minPrice && participant.priceRange <= maxPrice);
+     }
+
+     // Обробники подій для кнопок запитів
+     document.getElementById('query1').addEventListener('click', function() {
+         const participants = findParticipantsWithSameFavoriteScents('lemonPie');
+         displayResults(participants);
+     });
+
+     document.getElementById('query2').addEventListener('click', function() {
+         const participants = findParticipantsWhoConsiderCandleAGoodGift();
+         displayResults(participants);
+     });
+
+     document.getElementById('query3').addEventListener('click', function() {
+         const participants = findParticipantsWithinPriceRange(250, 350);
+         displayResults(participants);
+     });
+
+     // Функція для відображення результатів запитів на сторінці
+     function displayResults(participants) {
+         const queryResults = document.getElementById('queryResults');
+         queryResults.innerHTML = ''; // Очищаємо результати перед виведенням нових
+
+         if (participants.length > 0) {
+             participants.forEach(participant => {
+                 const participantInfo = document.createElement('p');
+                 participantInfo.textContent = `Ім'я: ${participant.name}, Вік: ${participant.age}, Аромат: ${participant.favoriteScent}`; // Змінити відповідно до ваших властивостей об'єкта
+                 queryResults.appendChild(participantInfo);
+             });
+         } else {
+             const noResultsMessage = document.createElement('p');
+             noResultsMessage.textContent = 'Результатів не знайдено';
+             queryResults.appendChild(noResultsMessage);
+         }
+     }
+ </script>
+</body>
+</html>
